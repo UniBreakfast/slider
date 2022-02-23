@@ -3,7 +3,8 @@ let currentSlide = 0;
 document.body.innerHTML = buildSlider(3);
 
 const slider = document.querySelector('.slider')
-const track = slider.querySelector('.slide-track')
+const holder = slider.querySelector('.slide-holder')
+const track = holder.querySelector('.slide-track')
 
 const [leftBtn, rightBtn] = slider.querySelectorAll('button')
 
@@ -41,18 +42,19 @@ function slideLeft() {
     if (currentSlide === 0) {
         track.prepend(track.lastElementChild)
         currentSlide++ ;
-        track.children[currentSlide].scrollIntoView()
+        holder.scroll({left: 460 * currentSlide})
     }
     currentSlide--
-    track.children[currentSlide].scrollIntoView({behavior: 'smooth'})
+    holder.scroll({left: 460 * currentSlide, behavior: 'smooth'})
 }
 
 function slideRight() {
     if (currentSlide === track.children.length - 1) {
         track.append(track.firstElementChild)
         currentSlide-- ;
-        track.children[currentSlide].scrollIntoView()
+        holder.scroll({left: 460 * currentSlide})
+
     }
     currentSlide++
-    track.children[currentSlide].scrollIntoView({behavior: 'smooth'})
+    holder.scroll({left: 460 * currentSlide, behavior: 'smooth'})
 }
